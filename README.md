@@ -14,9 +14,10 @@ This workshop relies a couple of materials from the following repositories. Than
 
 
 ## Install GraalVM
-This labs is build with the latest GraalVM release; while writing this material and do not focus only on Spring Native Project
+This labs is build with the following components
 * GraalVM latest version is *21.3.0* 
-* 
+* Java *11*
+
 The instructions to install GraalVM can be found online [here](https://docs.oracle.com/en/graalvm/enterprise/21/docs/getting-started/#install-graalvm-enterprise).
 
 
@@ -32,5 +33,7 @@ The instructions to install GraalVM can be found online [here](https://docs.orac
 * [GC options for GraalVM native image](./7/)
 * [Profile guided optimizations for GraalVM native image](./8/)
 
-More Readings
-* []
+More Readings and Workshops
+* [GraalVM Native Image Workshop](https://github.com/krisfoster/Native-Image-Workshop)
+* [GraalVM Polyglot Workshop](https://github.com/nelvadas/GraalVM-Polyglot-Labs)
+* [Accelerating Apache Spark with GraalVM](https://github.com/nelvadas/spark-with-graalvm)
