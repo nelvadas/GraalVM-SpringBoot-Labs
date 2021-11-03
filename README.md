@@ -1,4 +1,4 @@
-# GraalVM SpringBoot Hands on Labs
+# GraalVM Spring Boot Hands on Labs
 Accelerating and Optimizing SpringBoot Applications with GraalVM Universal Virtual Machine
 ## Overview
 A Workshop for *Spring Boot*  lovers that will introduce & demonstrate some of the coolest things you can do with GraalVM.
