@@ -8,14 +8,15 @@ This workshop focus first on the core features provided by GraalVM Enterprise Ed
 
 ## Credits
 This workshop relies a couple of materials from the following repositories. Thanks for your work and Open source engagement.
-* Link1
+* [Spring Boot Guides](https://spring.io/guides/gs/spring-boot/)
 * Link2
 
 
 ## Install GraalVM
 This labs is build with the following components
-* GraalVM latest version is *21.3.0* 
-* Java *11*
+* GraalVM latest version is 21.3.0 
+* Java 11
+* Gradle 4+ or Maven 3.2+
 
 The instructions to install GraalVM can be found online [here](https://docs.oracle.com/en/graalvm/enterprise/21/docs/getting-started/#install-graalvm-enterprise).
 
