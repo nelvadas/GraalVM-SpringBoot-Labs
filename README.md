@@ -1,8 +1,7 @@
-# GraalVM-SpringBoot-Labs
+# GraalVM SpringBoot Hands on Labs
 Accelerating and Optimizing SpringBoot Applications with GraalVM Universal Virtual Machine
 ## Overview
-A GraalVM Workshop for Spring Boot lovers that will introduce & demonstrate some of the things that you can do with it .
-
+A Workshop for *Spring Boot*  lovers that will introduce & demonstrate some of the coolest things you can do with GraalVM.
 The workshop is divided into a number of sub-pages, each largely self-contained, that cover one aspect of GraalVM Native Image. Some of these workshops are equally applicable to the Community Edition & the Enterprise Edition, but some focus on functionality that is only available within the Enterprise Edition, such as Profile Guided Optimisations.
 This workshop focus first on the core features provided by GraalVM Enterprise Edition and not specifically on [Spring Native Project](https://github.com/spring-projects-experimental/spring-native) that is still Beta when writing this pages.
 
