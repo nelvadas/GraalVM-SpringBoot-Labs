@@ -24,14 +24,15 @@ The instructions to install GraalVM can be found online [here](https://docs.orac
 ## Table of Contents
 
 * [What is Native Image?](./0/)
-* [Building a simple GraalVM native image](./1/)
-* [Assisted configuration for GraalVM native image](./2/)
-* [Class initialization strategy for GraalVM native image](./3/)
-* [Smaller deployment options for GraalVM native image](./4/)
-* [Deployment options for GraalVM native images](./5/)
-* [Configuring memory used by GraalVM native images](./6/)
-* [GC options for GraalVM native image](./7/)
-* [Profile guided optimizations for GraalVM native image](./8/)
+* [Creating a simple Spring Boot application](./1/)
+* [Compile a simple Spring Boot application with GraalVM Native Image](./2/)
+* [Assisted configuration for GraalVM native image](./3/)
+* [Class initialization strategy for GraalVM native image](./4/)
+* [Smaller deployment options for GraalVM native image](./5/)
+* [Deployment options for GraalVM native images](./6/)
+* [Configuring memory used by GraalVM native images](./7/)
+* [GC options for GraalVM native image](./8/)
+* [Profile guided optimizations for GraalVM native image](./9/)
 
 More Readings and Workshops
 * [GraalVM Native Image Workshop](https://github.com/krisfoster/Native-Image-Workshop)
