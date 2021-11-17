@@ -521,7 +521,7 @@ nono             12271   0,0  0,9 38333440 289392 s002  S+    4:52     0:02.58 t
 
 By Running this simple helloworld application with GraalVM Native Technology, we can increase both sartup times and performances. 
 
-Next, we'll try to explore various items related to Native images Technolgoie for this application.
+Next, we'll try to explore various items related to Native Image Technologie for this application.
 
 ---
 <a href="../3/">

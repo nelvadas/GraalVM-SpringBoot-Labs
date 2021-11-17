@@ -3,7 +3,6 @@ Accelerating and Optimizing SpringBoot Applications with GraalVM Universal Virtu
 ## Overview
 A Workshop for *Spring Boot*  lovers that will introduce & demonstrate some of the coolest things you can do with GraalVM.
 The workshop is divided into a number of sub-pages, each largely self-contained, that cover one aspect of GraalVM Native Image. Some of these workshops are equally applicable to the Community Edition & the Enterprise Edition, but some focus on functionality that is only available within the Enterprise Edition, such as Profile Guided Optimisations.
-This workshop focus first on the core features provided by GraalVM Enterprise Edition and not specifically on [Spring Native Project](https://github.com/spring-projects-experimental/spring-native) that is still Beta when writing this pages.
 
 
 ## Credits
@@ -27,12 +26,7 @@ The instructions to install GraalVM can be found online [here](https://docs.orac
 * [Creating a simple Spring Boot application](./1/)
 * [Compile a simple Spring Boot application with GraalVM Native Image](./2/)
 * [Assisted configuration for GraalVM native image](./3/)
-* [Class initialization strategy for GraalVM native image](./4/)
-* [Smaller deployment options for GraalVM native image](./5/)
-* [Deployment options for GraalVM native images](./6/)
-* [Configuring memory used by GraalVM native images](./7/)
-* [GC options for GraalVM native image](./8/)
-* [Profile guided optimizations for GraalVM native image](./9/)
+* [Profile guided optimizations for GraalVM native image](./4/)
 
 More Readings and Workshops
 * [GraalVM Native Image Workshop](https://github.com/krisfoster/Native-Image-Workshop)
