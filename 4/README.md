@@ -16,11 +16,10 @@
 
 - [Profile Guided Optimization](https://www.graalvm.org/reference-manual/native-image/PGO/)
 
-## Overview
-
+## Objective
 - Collect application metrics with ApacheBench
-- Compare throughputs in both JIT and AOT Mode
-- Tune the AOT build
+- Compare througput in both JIT and AOT Mode
+- Tune the AOT image
 
 
 ## JIT vs AOT  throughputs
@@ -179,4 +178,62 @@ Send 1000000 requests
 ```
 ab -n 1000000 -s 3600000 localhost:8080/fibonacci/100
 ```
-Througput should now be similar to what you previously had with this appliation running in JIT Mode `(~400 requests per second )`
+througput should now be similar to what you previously had with this appliation running in JIT Mode `(~372 requests per second )`
+
+```
+$ ab -n 1000000 -s 3600000 localhost:8080/fibonacci/100
+This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking localhost (be patient)
+Completed 100000 requests
+Completed 200000 requests
+Completed 300000 requests
+Completed 400000 requests
+Completed 500000 requests
+Completed 600000 requests
+Completed 700000 requests
+Completed 800000 requests
+Completed 900000 requests
+Completed 1000000 requests
+Finished 1000000 requests
+
+
+Server Software:
+Server Hostname:        localhost
+Server Port:            8080
+
+Document Path:          /fibonacci/100
+Document Length:        10 bytes
+
+Concurrency Level:      1
+Time taken for tests:   2694.976 seconds
+Complete requests:      1000000
+Failed requests:        0
+Total transferred:      115000000 bytes
+HTML transferred:       10000000 bytes
+Requests per second:    371.06 [#/sec] (mean)
+Time per request:       2.695 [ms] (mean)
+Time per request:       2.695 [ms] (mean, across all concurrent requests)
+Transfer rate:          41.67 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2 217.7      0   35868
+Processing:     0    0   8.4      0    4769
+Waiting:        0    0   5.8      0    2881
+Total:          0    2 217.9      0   35869
+
+Percentage of the requests served within a certain time (ms)
+  50%      0
+  66%      1
+  75%      1
+  80%      1
+  90%      1
+  95%      1
+  98%      1
+  99%      2
+ 100%  35869 (longest request)
+nono-mac:GraalVM-SpringBoot-Labs nono$
+```
