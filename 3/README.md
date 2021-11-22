@@ -109,7 +109,7 @@ By Running this simple helloworld application with GraalVM Native Technology, we
 Next, we'll try to explore various items related to Native Image Technologie for this application.
 
 ---
-<a href="../3/">
+<a href="../4/">
     <img src="../images/noun_Next_511450_100.png"
         style="display: inline; height: 6em;" />
 </a>
