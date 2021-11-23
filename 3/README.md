@@ -101,7 +101,41 @@ containing all the required classed loaded by reflection.
 ```
 
 
+You can use the GraalVM tracing agent to automatically retreive the reflexion configuration.
 
+
+```
+java -agentlib:native-image-agent=config-output-dir=META-INF/native-image -jar target/hello-spring-boot-app-0.0.1-SNAPSHOT.jar
+```
+
+Run the application, and then Check the content of your META-INF Directory
+```
+$ tree META-INF/native-image/
+META-INF/native-image/
+├── jni-config.json
+├── predefined-classes-config.json
+├── proxy-config.json
+├── reflect-config.json
+├── resource-config.json
+└── serialization-config.json
+
+0 directories, 6 files
+```
+
+```
+cat META-INF/native-image/reflect-config.json  | grep Fib
+  "name":"com.oracle.graalvm.demo.hellospringbootapp.FibonacciController",
+  "name":"com.oracle.graalvm.demo.hellospringbootapp.FibonacciUtils",
+
+```
+
+
+To merge your files with an existing folder or directory, use the  `config-merge-dir`option 
+
+```
+java -agentlib:native-image-agent=config-merge-dir=/path/to/config-dir/ ...
+
+```
 
 
 By Running this simple helloworld application with GraalVM Native Technology, we can increase both sartup times and performances. 
