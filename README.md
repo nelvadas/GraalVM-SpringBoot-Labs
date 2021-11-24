@@ -8,7 +8,6 @@ The workshop is divided into a number of sub-pages, each largely self-contained,
 ## Credits
 This workshop relies a couple of materials from the following repositories. Thanks for your work and Open source engagement.
 * [Spring Boot Guides](https://spring.io/guides/gs/spring-boot/)
-* Link2
 
 
 ## Install GraalVM
