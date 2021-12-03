@@ -16,12 +16,12 @@
 
 - [Compiling Native Image](https://docs.oracle.com/en/graalvm/enterprise/21/docs/reference-manual/native-image/)
 
-## Overview 
+## Overview
 In this lab, the objective is to create a Native image from a simple Spring Boot application using GraalVM updater utility.
 
 ## Native image Extension
 GraalVM comes with a couple of extensions shipped sepearately from the core
-use the `gu` to install native image 
+use the `gu` to install native image
 ```shell
 $ which gu
 /Users/nono/.sdkman/candidates/java/21.3.0-ee11/bin/gu
@@ -63,7 +63,7 @@ public class FibonacciController {
 	}
 ```
 
-Build the application JAR and Start it the application in the standard way 
+Build the application JAR and Start it the application in the standard way
 ```bash
 $ java -jar target/hello-spring-boot-app-0.0.1-SNAPSHOT.jar
 
@@ -87,7 +87,7 @@ $ java -jar target/hello-spring-boot-app-0.0.1-SNAPSHOT.jar
 2021-11-13 08:42:48.112  INFO 3370 --- [           main] c.o.g.d.h.HelloSpringBootAppApplication  : Started HelloSpringBootAppApplication in 1.868 seconds (JVM running for 2.245)
 ```
 
-Note the `startup` time and the `package size` 
+Note the `startup` time and the `package size`
 - ` c.o.g.d.h.HelloSpringBootAppApplication  : Started HelloSpringBootAppApplication in 1.868 seconds (JVM running for 2.245)`
 - `-rw-r--r--  1 nono  staff    19M Nov 13 08:42 hello-spring-boot-app-0.0.1-SNAPSHOT.jar`
 
@@ -109,9 +109,9 @@ drwxr-xr-x  3 nono  staff    96B Nov 13 08:42 maven-archiver
 ## Native Image build  
 
 
-### Standard Build 
+### Standard Build
 Make sure we are running with GraalVM
-```shell 
+```shell
 $  time native-image --no-fallback -jar target/hello-spring-boot-app-0.0.1-SNAPSHOT.jar hello
 [hello:15916]    classlist:   1,024.27 ms,  0.96 GB
 [hello:15916]        (cap):   1,546.84 ms,  0.96 GB
@@ -137,7 +137,7 @@ sys     0m7.726s
 
 ```
 
-The native image file is generated 
+The native image file is generated
 ```
 nono-mac:hello-spring-boot-app nono$ ls -rtlh
 total 31296
@@ -150,15 +150,15 @@ drwxr-xr-x@  4 nono  staff   128B Nov  3 14:19 src
 drwxr-xr-x  11 nono  staff   352B Nov 12 12:51 target
 -rwxr-xr-x   1 nono  staff    15M Nov 12 12:53 hello
 -rw-r--r--   1 nono  staff    20B Nov 12 12:53 hello.build_artifacts.txt
-nono-mac:hello-spring-boot-app nono$ 
+nono-mac:hello-spring-boot-app nono$
 
 ```
 
 
-Try to run the generated `hello` binary 
+Try to run the generated `hello` binary
 
 ```
-$ ./hello 
+$ ./hello
 Exception in thread "main" java.lang.IllegalStateException: java.util.zip.ZipException: zip END header not found
         at org.springframework.boot.loader.ExecutableArchiveLauncher.<init>(ExecutableArchiveLauncher.java:52)
         at org.springframework.boot.loader.JarLauncher.<init>(JarLauncher.java:48)
@@ -169,14 +169,14 @@ Caused by: java.util.zip.ZipException: zip END header not found
 ```
 :X: an error is reported immediately.  
 This is related to the nature of Spring Boot Applications. We need a custom build process to be compliant  with GraalVM
-and that is the Great Job beeing currently done by [Spring Native Project](https://github.com/spring-projects-experimental/spring-native) 
+and that is the Great Job beeing currently done by [Spring Native Project](https://github.com/spring-projects-experimental/spring-native)
 to handle on these actions to make your application Native.
-In the next section we will use Spring Native and a custom builder script to create a fully fonctionnal native binary 
+In the next section we will use Spring Native and a custom builder script to create a fully fonctionnal native binary
 
 ### Spring Native In Action
 
 To enable Spring native,
-:one:  add the Spring Native dependency in your `pom.xml` 
+:one:  add the Spring Native dependency in your `pom.xml`
 file. This dependency embarks a set of mandatory API required to build you Spring boot application as native image.
 
 ```xml
@@ -223,7 +223,7 @@ This plugin handles AOT transformations during the build phase to make the appli
 
 ```
 
-:three: Add Mandatory maven repositories 
+:three: Add Mandatory maven repositories
 
 ```
 repositories>
@@ -243,8 +243,18 @@ repositories>
 	</pluginRepositories>
   ```
 
+:four: Add a main class
+GraalVM Native image process requires a main class
+Add the following property to your `pom.xml` file.
 
-:four: Add a custom builder script ( `build.sh`)
+```xml
+<properties>
+		
+		<main-class>com.oracle.graalvm.demo.hellospringbootapp.HelloSpringBootAppApplication</main-class>
+	</properties>
+  ```
+
+:five: Add a custom builder script ( `build.sh`)
 ```shell
 #!/usr/bin/env bash
 
@@ -306,7 +316,7 @@ time native-image \
 
   ```
 
-The script first packages the application as a JAR file 
+The script first packages the application as a JAR file
  then it create the rigth classpath to build this application as native.
 
 The native builder plugins detects and list all the required classes to build a native image in the `target/native-image/META-INF` folder.
@@ -352,7 +362,7 @@ drwxr-xr-x  6 nono  staff   192B Nov 13 16:33 BOOT-INF
 
 Start the `hello-spring-boot-app` binary
 ```bash
-$  target/native-image/hello-spring-boot-app 
+$  target/native-image/hello-spring-boot-app
 2021-11-13 16:40:29.216  INFO 11927 --- [           main] o.s.nativex.NativeListener               : This application is bootstrapped with code generated with Spring AOT
 
   .   ____          _            __ _ _
@@ -385,7 +395,7 @@ The application start very fast (100X faster than regular startup with java -jar
 
 ## Native Image vs JIT
 
-Send 10000 requests to compute Fib(100) to your running  native image application 
+Send 10000 requests to compute Fib(100) to your running  native image application
 ```
 $ ab -n 10000  -c 100 http://localhost:8080/fibonacci/100
 This is ApacheBench, Version 2.3 <$Revision: 1879490 $>
@@ -446,7 +456,7 @@ Percentage of the requests served within a certain time (ms)
 
 
 
-```shell 
+```shell
 java -jar target/hello-spring-boot-app-0.0.1-SNAPSHOT.jar
 ```
 
@@ -508,7 +518,7 @@ Percentage of the requests served within a certain time (ms)
  100%    457 (longest request)
  ```
 
-GraalVM Native image process start fast and even use less resources. 
+GraalVM Native image process start fast and even use less resources.
 ```
 nono-mac:target nono$ ps auwx|egrep "MEM|12370"|grep -v grep
 USER               PID  %CPU %MEM      VSZ    RSS   TT  STAT STARTED      TIME COMMAND
@@ -519,7 +529,7 @@ USER               PID  %CPU %MEM      VSZ    RSS   TT  STAT STARTED      TIME C
 nono             12271   0,0  0,9 38333440 289392 s002  S+    4:52     0:02.58 target/native-image/hello-spring-boot-app
 ```
 
-By Running this simple helloworld application with GraalVM Native Technology, we can increase both sartup times and performances. 
+By Running this simple helloworld application with GraalVM Native Technology, we can increase both sartup times and performances.
 
 Next, we'll try to explore various items related to Native Image Technologie for this application.
 
@@ -528,8 +538,3 @@ Next, we'll try to explore various items related to Native Image Technologie for
     <img src="../images/noun_Next_511450_100.png"
         style="display: inline; height: 6em;" />
 </a>
-
-
-
-
-
